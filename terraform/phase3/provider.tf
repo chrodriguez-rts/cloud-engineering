@@ -1,4 +1,14 @@
 terraform {
+  backend "s3" {
+    bucket         = "terraform-state-468278742450"
+    key            = "phase3/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-state-lock"
+    encrypt        = true
+  }
+}
+
+terraform {
   required_version = ">= 1.0"
   required_providers {
     aws = {
